@@ -22,10 +22,13 @@ form {
 }
 
 input {
-    /* border-color: #606060; */
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+    background: rgb(238, 238, 238);
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-color: transparent; 
+    border-right-color: black;
     padding: .55em;
+    width: 450px;
 }
 
 button {
@@ -39,8 +42,8 @@ button i {
 }
 
 .submit-btn {
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
     margin-right: 1rem;
 }
 
