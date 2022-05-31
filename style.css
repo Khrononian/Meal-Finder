@@ -50,3 +50,8 @@ button i {
 .shuffle-btn {
     border-radius: 3px;
 }
+
+.results-header {
+    font-size: 1.3rem;
+    margin-top: 1.5rem;
+}
