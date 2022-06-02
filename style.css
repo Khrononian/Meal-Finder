@@ -48,10 +48,23 @@ button i {
 }
 
 .shuffle-btn {
-    border-radius: 3px;
+    border-radius: 6px;
 }
 
 .results-header {
     font-size: 1.3rem;
     margin-top: 1.5rem;
+}
+
+.results-grid {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    margin-top: 2rem;
+}
+
+
+img {
+    width: 220px;
+    object-fit: contain;
 }
