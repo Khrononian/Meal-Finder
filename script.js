@@ -34,13 +34,18 @@ const fetchURL = (url, mealName) => {
             if (getData[array].strMeal.includes(mealName.toLowerCase())) {
                 console.log('FOUND', getData[array].strMeal)
                 const div = document.createElement('div')
-                const h2 = document.createElement('h3')
+                const overlayDiv = document.createElement('div');
+                const h3 = document.createElement('h3')
                 const img = document.createElement('img')
 
                 resultsGrid.appendChild(div)
-                div.append(h2, img)
+                div.append(img, overlayDiv)
+                overlayDiv.appendChild(h3)
 
-                h2.innerText = getData[array].strMeal
+                div.classList.add('parent-div')
+                overlayDiv.classList.add('overlay')
+
+                h3.innerText = getData[array].strMeal
                 img.src = getData[array].strMealThumb
             }
         }

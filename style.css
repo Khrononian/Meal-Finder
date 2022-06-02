@@ -60,11 +60,33 @@ button i {
     width: 80%;
     display: grid;
     grid-template-columns: repeat(4, auto);
-    margin-top: 2rem;
+    margin: 2rem auto 0 auto;
+    justify-content: center;
+    grid-gap: 8px;
 }
 
 
 img {
     width: 220px;
     object-fit: contain;
+}
+
+.parent-div {
+    position: relative;
+    transition: .6s ease;
+}
+
+.parent-div:hover .overlay {
+    backdrop-filter: blur(3px);
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
 }
