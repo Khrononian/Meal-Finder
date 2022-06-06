@@ -65,7 +65,6 @@ button i {
     grid-gap: 8px;
 }
 
-
 img {
     width: 220px;
     object-fit: contain;
@@ -73,11 +72,7 @@ img {
 
 .parent-div {
     position: relative;
-    transition: .6s ease;
-}
-
-.parent-div:hover .overlay {
-    backdrop-filter: blur(3px);
+    cursor: pointer;
 }
 
 .overlay {
@@ -89,4 +84,60 @@ img {
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    backdrop-filter: blur(0px);
+    filter: blur(0px);
+    transition: all .4s ease;
+}
+
+.parent-div:hover .overlay {
+    backdrop-filter: blur(3px);
+    filter: blur(3px)
+}
+
+
+.meal-info {
+    display: none;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.header {
+    margin: 3rem 0
+}
+
+.meal-img {
+    width: 280px;
+    object-fit: contain;
+}
+
+.box {
+    border: 1px black dotted;
+    padding: 1.2em;
+    margin: .8rem 0;
+}
+
+.box h4 {
+    font-size: 1.1rem;
+}
+
+.category {
+    margin-bottom: .7rem;
+}
+
+.instruction {
+    font-size: 1.15rem;
+}
+
+.ingredients {
+    margin-top: 1.5rem;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background: black;
+    border-radius: 3px;
+    color: white;
+    padding: .3em;
 }
