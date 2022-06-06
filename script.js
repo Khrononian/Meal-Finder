@@ -22,15 +22,37 @@ const fetchURL = (url, mealName) => {
     fetch(url).then(response => response.json())
     .then(data => {
         console.log(data.meals)
-        // console.log('Find index', data.meals[0].strIngredient.includes('Chicken'))
-        // console.log('LOOK FOR', data.meals[0].strIngredient.includes(mealName))
-        
-        // for (let i = 0; i < data.meals.length; i++) console.log('LOOK FOR', data.meals[i].strMeal.includes(mealName.toLowerCase()))
         
         const getData = data.meals
 
+        const postMealData = event => {
+            console.log(event.target.parentElement)
+            const targetHeader = event.target.parentElement.querySelector('.overlay').querySelector('h3')
+
+            document.querySelector('.meal-info').style.display = 'block'
+            document.querySelector('.header').innerText = targetHeader.innerText
+            document.querySelector('.meal-img').src = event.target.src
+            for (let i = 0; i < getData.length; i++) {
+                if (getData[i].strMeal == targetHeader.innerText) {
+                    document.querySelector('.category').innerText = getData[i].strCategory;
+                    document.querySelector('.area').innerText = getData[i].strArea;
+                    document.querySelector('.instruction').innerText = getData[i].strInstructions
+                    for (let k = 1; k <= 20; k++) {
+                        const p = document.createElement('p');
+                        const list = document.querySelector('.list')
+
+                        list.appendChild(p)
+                        p.classList.add('list')
+
+                        p.innerText = `${getData[i].strIngredient}`+ k
+                        // p.innerText = getData[i].strIngredient
+                    }
+                }
+            }
+            
+        }
+
         for (let array = 0; array < getData.length; array++) {
-            // if (getData[array].strMeal.split(/\s+/).includes(mealName.toLowerCase()))
             if (getData[array].strMeal.includes(mealName.toLowerCase())) {
                 console.log('FOUND', getData[array].strMeal)
                 const div = document.createElement('div')
@@ -47,11 +69,16 @@ const fetchURL = (url, mealName) => {
 
                 h3.innerText = getData[array].strMeal
                 img.src = getData[array].strMealThumb
+
+                div.addEventListener('click', postMealData)
             }
         }
-        
-        
+
+    }).catch(error => {
+        resultsHeader.innerText = 'There are no search results. Try again'
     })
 }
+
+
 
 mealForm.addEventListener('submit', submitMealValue)
