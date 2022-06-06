@@ -37,15 +37,18 @@ const fetchURL = (url, mealName) => {
                     document.querySelector('.category').innerText = getData[i].strCategory;
                     document.querySelector('.area').innerText = getData[i].strArea;
                     document.querySelector('.instruction').innerText = getData[i].strInstructions
-                    for (let k = 1; k <= 20; k++) {
-                        const p = document.createElement('p');
-                        const list = document.querySelector('.list')
+                    for (const [key, value] of Object.entries(getData[i])) {
+                        if (key.includes('strIngredient') && key.length > 0) {
+                            const p = document.createElement('p');
+                            const list = document.querySelector('.list')
 
-                        list.appendChild(p)
-                        p.classList.add('list')
+                            console.log('NEW', getData[i])
 
-                        p.innerText = `${getData[i].strIngredient}`+ k
-                        // p.innerText = getData[i].strIngredient
+                            list.appendChild(p)
+                            p.classList.add('list')
+
+                            p.innerText = value
+                        }
                     }
                 }
             }
