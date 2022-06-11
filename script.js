@@ -14,8 +14,7 @@ const submitMealValue = (event) => {
     fetchURL(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputId.value}`, inputId.value)
     inputId.value = ''
 }
-// 'https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood' -- FILTER BY CATEGORY
-// https://www.themealdb.com/api/json/v1/1/lookup.php?i=52836 -- FILTER BY ID
+
 const getInputData = data => data
 
 const fetchURL = (url, mealName) => {
@@ -29,6 +28,8 @@ const fetchURL = (url, mealName) => {
             console.log(event.target.parentElement)
             const targetHeader = event.target.parentElement.querySelector('.overlay').querySelector('h3')
 
+            // if ()
+
             document.querySelector('.meal-info').style.display = 'block'
             document.querySelector('.header').innerText = targetHeader.innerText
             document.querySelector('.meal-img').src = event.target.src
@@ -37,17 +38,31 @@ const fetchURL = (url, mealName) => {
                     document.querySelector('.category').innerText = getData[i].strCategory;
                     document.querySelector('.area').innerText = getData[i].strArea;
                     document.querySelector('.instruction').innerText = getData[i].strInstructions
+                    let count = 0;
                     for (const [key, value] of Object.entries(getData[i])) {
                         if (key.includes('strIngredient') && key.length > 0) {
                             const p = document.createElement('p');
-                            const list = document.querySelector('.list')
-
+                            const list = document.querySelector('.list');
+                            
+                            count++
                             console.log('NEW', getData[i])
 
                             list.appendChild(p)
-                            p.classList.add('list')
+                            p.classList.add('list-items');
+                            p.dataset.num = count
 
                             p.innerText = value
+                            
+                            if (p.innerText == '') p.remove()
+                            
+                        }
+                        if (key.includes('strMeasure') ) {
+                            const measures = document.querySelectorAll('.list-items')
+
+                            measures.forEach(measure => {
+                                if (key.slice(-1) == measure.dataset.num) measure.innerText += ` ${value}`
+                                else if (key.slice(-2) == measure.dataset.num) measure.innerText += ` ${value}`
+                            })
                         }
                     }
                 }
