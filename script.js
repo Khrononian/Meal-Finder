@@ -6,7 +6,6 @@ const resultsGrid = document.querySelector('.results-grid');
 const submitMealValue = (event) => {
     event.preventDefault()
 
-    // if ()
     resultsHeader.innerText = `Search results for '${inputId.value}':`
 
     getInputData(inputId.value)
@@ -17,18 +16,36 @@ const submitMealValue = (event) => {
 
 const getInputData = data => data
 
-const fetchURL = (url, mealName) => {
-    fetch(url).then(response => response.json())
-    .then(data => {
+async function fetchURL (url, mealName) {
+    try {
+        const response = await fetch(url);
+        const data = await response.json() 
+
         console.log(data.meals)
         
         const getData = data.meals
-
+        
+        if (resultsGrid.hasChildNodes()) {
+            let child = resultsGrid.lastElementChild
+            
+            while (child) {
+                resultsGrid.removeChild(child)
+                child = resultsGrid.lastElementChild
+            }
+        }
         const postMealData = event => {
             console.log(event.target.parentElement)
             const targetHeader = event.target.parentElement.querySelector('.overlay').querySelector('h3')
 
-            // if ()
+            if (resultsGrid.hasChildNodes()) {
+                let getList = document.querySelector('.list')
+                let child = getList.lastElementChild
+                
+                while (child) {
+                    getList.removeChild(child)
+                    child = getList.lastElementChild
+                }
+            }
 
             document.querySelector('.meal-info').style.display = 'block'
             document.querySelector('.header').innerText = targetHeader.innerText
@@ -54,7 +71,6 @@ const fetchURL = (url, mealName) => {
                             p.innerText = value
                             
                             if (p.innerText == '') p.remove()
-                            
                         }
                         if (key.includes('strMeasure') ) {
                             const measures = document.querySelectorAll('.list-items')
@@ -67,7 +83,6 @@ const fetchURL = (url, mealName) => {
                     }
                 }
             }
-            
         }
 
         for (let array = 0; array < getData.length; array++) {
@@ -91,12 +106,9 @@ const fetchURL = (url, mealName) => {
                 div.addEventListener('click', postMealData)
             }
         }
-
-    }).catch(error => {
+    } catch {
         resultsHeader.innerText = 'There are no search results. Try again'
-    })
+    }
 }
-
-
 
 mealForm.addEventListener('submit', submitMealValue)
