@@ -15,10 +15,13 @@ header {
 form {
     display: flex;
     justify-content: center;
+    /* width: 100px;
+    margin: 0 auto; */
 }
 
 .form {
     display: flex;
+    /* width: 400px; */
 }
 
 input {
@@ -29,6 +32,7 @@ input {
     border-right-color: black;
     padding: .55em;
     width: 450px;
+    max-width: 90%;
 }
 
 button {
@@ -137,7 +141,6 @@ img {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    background: black;
     border-radius: 3px;
     color: white;
     padding: .3em;
@@ -151,4 +154,38 @@ img {
     padding: .3em;
     background: grey;
     border-radius: 4px;
+}
+
+@media screen and (min-width: 320px) {
+    .form {
+        width: 300px;
+    }
+
+    .results-grid {
+        grid-template-columns: repeat(1, auto);
+    }
+
+    .list {
+        max-width: 85%;
+    }
+}
+
+@media screen and (min-width: 608px) {
+    .form {
+        width: inherit;
+    }
+
+    .results-grid {
+        grid-template-columns: repeat(2, auto);
+    }
+
+    .list {
+        max-width: 95%;
+    }
+}
+
+@media screen and (min-width: 802px) {
+    .results-grid {
+        grid-template-columns: repeat(3, auto);
+    }
 }
